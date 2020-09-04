@@ -1,0 +1,51 @@
+<html>
+	<head>
+		<title>is it worth</title>
+	</head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="./src/global.js"></script>
+    <script type="text/javascript" src="./src/functions.js"></script>
+    <script type="text/javascript" src="./src/view.js"></script>
+    <script type="text/javascript" src="./src/model.js"></script>
+    <script> 
+        window.onload = (event) => {
+            document.getElementById('customBtn').onclick = function() {
+                Model.handleCustom(
+                    document.getElementById('inputItem').value, 
+                    document.getElementById('inputQuantity').value
+                );
+            };
+        };
+
+        var drawCharts = function() {
+            Model.handleGathering();
+            Model.handleDrops();
+        };
+
+        google.charts.load('current', {'packages':['bar']});
+        google.charts.setOnLoadCallback(drawCharts());
+    </script>
+	<body>
+        <div><div id="loadText">Loading...</div><br><br>
+            Charts excludes some extermities to give a better overview.<br>
+            Exclusions are highlighted as <b>bold</b> in data below.<br>
+            <br>
+            Silver values are <a href="https://www.albion-online-data.com/">current averages</a> across Royal Cities excluding Caerleon.<br>
+            <br>
+        </div>
+        <div>Item id: <input type="text" id="inputItem" value="T5_BAG@1,T6_BAG"> Quantity: <input type="number" value="1" min="1" step="1" id="inputQuantity"> <button id="customBtn">Get Custom</button>
+        <div id="custom"></div>
+        <div id="gatherWeight" style="width: 900px; height: 500;"></div>
+        <div id="gWData"></div>
+        <div id="gatherStack" style="width: 900px; height: 500;"></div>
+        <div id="gSData"></div>
+        <div id="gatherCoeff" style="width: 900px; height: 500;"></div>
+        <div id="gCData"></div>
+        <div id="dropsWeight" style="width: 900px; height: 500;"></div>
+        <div id="dWData"></div>
+        <div id="dropsStack" style="width: 900px; height: 500;"></div>
+        <div id="dSData"></div>
+        <div id="dropsCoeff" style="width: 900px; height: 500;"></div>
+        <div id="dCData"></div>
+	</body>
+</html>

@@ -1,0 +1,13 @@
+#set($inputRoot = $input.path('$'))
+#set($errorType = $util.getMetadata($inputRoot, "errorType"))
+#set($errorMessage = $util.getMetadata($inputRoot, "errorMessage"))
+#if($errorType != "")
+    #set($context.responseOverride.status = 400)
+    #if($errorType = "GameException" && $errorMessage != "")
+        $errorMessage.json('$')
+    #else
+        $input.json('$')
+    #end
+#else
+    $input.json('$')
+#end
